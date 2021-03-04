@@ -1,6 +1,6 @@
 # SuiteScript
 
 ## Contents
-```diff
-+ Shopify Cursor based and Since_Id Pagination
+```
+→ Shopify Cursor based and Since_Id Pagination
 ```
