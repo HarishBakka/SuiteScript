@@ -2,7 +2,7 @@
 function yesterdate() {
   // Date and Time
   const date = new Date();
-  //date.setDate(date.getDate() - 1);
+  //date.setDate(date.getDate() - 1); // to get Yesterday date using negative
   const year = date.getFullYear();
   const month = ('0'+(date.getMonth()+1)).slice(-2);
   const daDate = ('0'+date.getDate()).slice(-2);
@@ -77,3 +77,39 @@ function shopifyExtractRequest(shopifyUrl) {
 }
 //You can call from anywhere
 const OrderList = cursorBasedPagination();
+
+# Since_ID
+function ShopifySinceIdPull(){
+  const shopifyOrderPages = [];
+  var prevSinceId = 0;
+  var nextSinceId = 0;
+  do {
+    //log.debug("GET NEXT AND PREV ID", prevSinceId +' : '+ nextSinceId);
+    prevSinceId = nextSinceId;
+    const pgRes = shopifyExtractRequest(finalCallShopifyUrl(nextSinceId));
+    const body = JSON.parse(pgRes.body);
+    //log.debug('GET RES BODY', body);
+    var nextidSort = [];
+    if (body.orders) {
+      body.orders.forEach(function (orders) {
+       var shopifyId = orders.id;
+        nextidSort.push(shopifyId);
+        shopifyOrderPages.push(orders);
+      });
+    }
+    nextidSort.sort(function(a, b) {
+      return a - b;
+    }); // This does require the records to be sorted by id ascending, but this happens automatically when a since_id parameter is present. 
+    var lastId = nextidSort[nextidSort.length - 1];
+    //log.debug("GET LAST ID", lastId);
+    nextSinceId = lastId;
+  }
+  while (nextSinceId);
+  
+  return shopifyOrderPages;
+}
+function finalCallShopifyUrl(sinceId) {
+  //Pagination Config
+  const shopifyUrl = appInfo() + '/orders.json?created_at_min='+ yesterdate() +'T00:00:00-07:00&created_at_max='+ yesterdate() +'T23:59:59-07:00&limit=250&status=any&fields=id,created_at, financial_status, name&since_id=' + sinceId;
+  return shopifyUrl;
+}
