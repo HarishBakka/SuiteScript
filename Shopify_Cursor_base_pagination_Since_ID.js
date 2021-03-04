@@ -42,7 +42,7 @@ function cursorBasedPagination() {
         nextPagebodyPgNat.orders.forEach(function (v){
           ordersList.push(v); //Initial orders list of 250 limit
         });
-        ordersList.push(nextPagebodyPgNat);
+        //ordersList.push(nextPagebodyPgNat);
         var nextPageHeaders = nextPageInfoRes.headers;
         nextLink = nextPageHeaders.Link
       }
