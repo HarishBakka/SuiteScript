@@ -1,8 +1,6 @@
 # SuiteScript
 
 ## Contents
-
 ```diff
-- Shopify Cursor based Pagination in green
-- Shopify Since Id pagination in green
++ Shopify Cursor based and Since_Id Pagination
 ```
