@@ -6,5 +6,5 @@
 |
 |→ ItemFulfillment Package adding
 |
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Harish`
+|→ POST|GET request using suitelet
 ```
