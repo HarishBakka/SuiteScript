@@ -1,8 +1,8 @@
 # SuiteScript 2.0, 2.1
 
 ## Contents
-```
-|→ Shopify Cursor based and Since_Id Pagination
+```diff
+|→ Shopify Cursor based and Since_Id Pagination in red
 |
 |→ ItemFulfillment Package adding
 |
